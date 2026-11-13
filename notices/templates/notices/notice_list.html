@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}Главная - Доска объявлений{% endblock %}
+
+{% block content %}
+    <h1>Все объявления</h1>
+
+    <!-- Блок формы создания -->
+    <div style="background: #f9f9f9; padding: 20px; border-radius: 5px; margin-bottom: 30px;">
+        <h2>Добавить объявление</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn">Опубликовать</button>
+        </form>
+    </div>
+
+    <!-- Блок списка объявлений -->
+    <h2>Список объявлений</h2>
+    {% for notice in notices %}
+        <div class="notice-card">
+            <h3>
+                <a href="{% url 'notice_detail' notice.pk %}" style="text-decoration: none; color: #007bff;">
+                    {{ notice.title }}
+                </a>
+            </h3>
+            <div class="meta">
+                Автор: {{ notice.author_name }} | Дата: {{ notice.created_at|date:"d.m.Y H:i" }}
+            </div>
+        </div>
+    {% empty %}
+        <p>Пока нет ни одного объявления. Будьте первым!</p>
+    {% endfor %}
+{% endblock %}

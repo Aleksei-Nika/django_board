@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ notice.title }}{% endblock %}
+
+{% block content %}
+    <a href="{% url 'notice_list' %}" style="text-decoration: none;">&larr; Назад к списку</a>
+    
+    <h1 style="margin-top: 20px;">{{ notice.title }}</h1>
+    <div class="meta" style="margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+        Автор: {{ notice.author_name }} | Опубликовано: {{ notice.created_at|date:"d.m.Y H:i" }}
+    </div>
+    
+    <div style="font-size: 1.1em; line-height: 1.6; white-space: pre-wrap;">{{ notice.content }}</div>
+    
+    <br><br>
+    <a href="{% url 'notice_list' %}" class="btn">Назад к списку</a>
+{% endblock %}

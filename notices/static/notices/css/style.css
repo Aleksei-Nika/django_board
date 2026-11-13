@@ -1,0 +1,48 @@
+/* notices/static/notices/css/style.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 40px;
+    background-color: #f4f4f9;
+    color: #333;
+}
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.notice-card {
+    border-bottom: 1px solid #eee;
+    padding: 15px 0;
+}
+.notice-card h3 {
+    margin: 0 0 5px 0;
+}
+.meta {
+    color: #777;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+}
+.btn {
+    display: inline-block;
+    padding: 10px 15px;
+    background: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+.btn:hover {
+    background: #0056b3;
+}
+form p {
+    margin-bottom: 10px;
+}
+form input, form textarea {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
