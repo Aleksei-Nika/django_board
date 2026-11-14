@@ -7,10 +7,21 @@
     
     <h1 style="margin-top: 20px;">{{ notice.title }}</h1>
     <div class="meta" style="margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 10px;">
-        Автор: {{ notice.author_name }} | Опубликовано: {{ notice.created_at|date:"d.m.Y H:i" }}
+        Автор: {{ notice.author.username }} | Опубликовано: {{ notice.created_at|date:"d.m.Y H:i" }}
     </div>
     
-    <div style="font-size: 1.1em; line-height: 1.6; white-space: pre-wrap;">{{ notice.content }}</div>
+    <div style="font-size: 1.1em; line-height: 1.6; white-space: pre-wrap; margin-bottom: 30px;">
+        {{ notice.content }}
+    </div>
+    
+    {% if user == notice.author %}
+        <div style="margin-bottom: 20px; padding-top: 15px; border-top: 1px solid #eee;">
+            <a href="{% url 'notice_update' notice.pk %}" class="btn" style="background-color: #f39c12;">✏️ Редактировать</a>
+            <a href="{% url 'notice_delete' notice.pk %}" class="btn" style="background-color: #e74c3c;">🗑 Удалить</a>
+        </div>
+    {% endif %}
+    
+    <a href="{% url 'notice_list' %}" class="btn" style="background-color: #95a5a6;">&larr; Назад к списку</a>
     
     <br><br>
     <a href="{% url 'notice_list' %}" class="btn">Назад к списку</a>

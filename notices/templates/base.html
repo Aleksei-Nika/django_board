@@ -8,6 +8,23 @@
     <link rel="stylesheet" href="{% static 'notices/css/style.css' %}">
 </head>
 <body>
+    <header class="site-header">
+        <div class="header-content">
+            <a href="{% url 'notice_list' %}" class="logo">📌 Доска объявлений</a>
+            <div class="auth-links">
+                {% if user.is_authenticated %}
+                    <span>Привет, <strong>{{ user.username }}</strong>!</span>
+                    <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn-link">Выйти</button>
+                    </form>
+                {% else %}
+                    <a href="{% url 'login' %}">Войти</a> | 
+                    <a href="{% url 'register' %}">Зарегистрироваться</a>
+                {% endif %}
+            </div>
+        </div>
+    </header>
     <div class="container">
         {% block content %}
         {% endblock %}
