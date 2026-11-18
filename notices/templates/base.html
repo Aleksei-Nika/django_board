@@ -13,7 +13,9 @@
             <a href="{% url 'notice_list' %}" class="logo">📌 Доска объявлений</a>
             <div class="auth-links">
                 {% if user.is_authenticated %}
-                    <span>Привет, <strong>{{ user.username }}</strong>!</span>
+                    <a href="{% url 'profile_view' %}" style="color: white; font-weight: bold; text-decoration: none;">
+                        {{ user.username }}
+                    </a>
                     <form action="{% url 'logout' %}" method="post" style="display:inline;">
                         {% csrf_token %}
                         <button type="submit" class="btn-link">Выйти</button>

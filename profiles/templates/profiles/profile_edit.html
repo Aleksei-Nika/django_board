@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Редактирование профиля{% endblock %}
+
+{% block content %}
+    <h1>Редактирование профиля</h1>
+    
+    <form method="post">
+        {% csrf_token %}
+        
+        <h3>Основная информация</h3>
+        {{ u_form.as_p }}
+        
+        <h3>Дополнительная информация</h3>
+        {{ p_form.as_p }}
+        
+        <button type="submit" class="btn">Сохранить изменения</button>
+        <a href="{% url 'profile_view' %}" style="margin-left: 15px; text-decoration: none;">Отмена</a>
+    </form>
+{% endblock %}

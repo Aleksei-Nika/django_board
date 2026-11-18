@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Профиль {{ user.username }}{% endblock %}
+
+{% block content %}
+    <h1>Личный кабинет</h1>
+    
+    <div style="background: #f9f9f9; padding: 20px; border-radius: 5px; margin-bottom: 30px;">
+        <p><strong>Имя пользователя:</strong> {{ user.username }}</p>
+        <p><strong>Email:</strong> {{ user.email|default:"Не указан" }}</p>
+        <p><strong>О себе:</strong> {{ user.profile.bio|default:"Не заполнено"|linebreaks }}</p>
+        <p><strong>Телефон:</strong> {{ user.profile.phone|default:"Не указан" }}</p>
+        <p><strong>Дата рождения:</strong> {{ user.profile.birth_date|default:"Не указана" }}</p>
+        
+        <a href="{% url 'profile_edit' %}" class="btn" style="margin-top: 15px;">Редактировать профиль</a>
+    </div>
+
+    <h2>Мои объявления</h2>
+    {% for notice in user_notices %}
+        <div class="notice-card">
+            <h3><a href="{% url 'notice_detail' notice.pk %}" style="text-decoration: none; color: #007bff;">{{ notice.title }}</a></h3>
+            <div class="meta">Опубликовано: {{ notice.created_at|date:"d.m.Y H:i" }}</div>
+        </div>
+    {% empty %}
+        <p>Вы пока не создали ни одного объявления.</p>
+    {% endfor %}
+{% endblock %}
